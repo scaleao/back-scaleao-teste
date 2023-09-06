@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\SaleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,3 +16,5 @@ use App\Http\Controllers\SellerController;
 */
 
 Route::apiResource('/vendedores', SellerController::class);
+Route::post('/venda', [SaleController::class, 'store']);
+// Route::get();
