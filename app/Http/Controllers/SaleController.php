@@ -2,14 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Sale;
+use App\Models\Seller;
 use App\Http\Requests\SaleStoreRequest;
 
 class SaleController extends Controller
 {
     public function store(SaleStoreRequest $request){
-        $sale = Sale::create($request->all());
-        return $sale ? $sale : false;
+        try{
+            $sale = Sale::create($request->all());
+            if($sale){
+                return response()->json([
+                    'message' => 'Venda cadastrada com sucesso',
+                    'data' => $sale,
+                ], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['erro' => 'Ocorreu um erro interno ao cadastrar venda'], 500);
+        }
+    }
+
+    public function show(int $id){
+        $seller = Seller::findOrFail($id);
+        $sales = $seller->sale;
+        
+        return response()->json([
+            'message' => 'Vendas consultado',
+            'data' => $sales,
+        ], 200);
     }
 }

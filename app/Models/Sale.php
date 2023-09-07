@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Seller;
 
 class Sale extends Model
 {
@@ -30,5 +31,10 @@ class Sale extends Model
                 $sale->comission = $comission;
             }
         });
+    }
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
     }
 }
