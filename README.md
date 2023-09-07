@@ -55,7 +55,7 @@ QUEUE_CONNECTION=database
 ```
 
 <p>Rodar os <code>TEST</code> (testes)</p>
-<p><code>OBSERVAÇÕES:</code> configurar o arquivo <code>phpunit.xml</code> correspondente ao <code>.env<code>. Dentro do arquivo <code>phpunit.xml</code> tem essa sessão para configuração, preencha com os dados do arquivo <code>.env</code>:<p>
+<p><code>OBSERVAÇÕES:</code> configurar o arquivo <code>phpunit.xml</code> correspondente ao <code>.env</code>. Dentro do arquivo <code>phpunit.xml</code> tem essa sessão para configuração, preencha com os dados do arquivo <code>.env</code>:<p>
 
 ```
 <!-- DEFINA OS VALORES DAS VARIAVEIS DE .ENV -->
