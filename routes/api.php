@@ -18,3 +18,6 @@ use App\Http\Controllers\SaleController;
 Route::apiResource('/vendedores', SellerController::class);
 Route::post('/venda', [SaleController::class, 'store']);
 Route::get('/venda/{id}', [SaleController::class, 'show']);
+Route::get('/', function () {
+    return ['Laravel' => app()->version()];
+});

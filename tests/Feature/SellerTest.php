@@ -15,14 +15,14 @@ class SellerTest extends TestCase
     {
         Seller::factory(5)->create();
 
-        $response = $this->getJson('/api/vendedores');
+        $response = $this->getJson('/vendedores');
  
         $response->assertStatus(200);
     }
 
     public function test_seller_store(): void
     {
-        $response = $this->postJson('/api/vendedores/', [
+        $response = $this->postJson('/vendedores/', [
                 "name" => "Scaleao",
                 "email" => "teste@teste.com"
             ]);
@@ -38,7 +38,7 @@ class SellerTest extends TestCase
     {
         $seller = Seller::factory()->create();
  
-        $response = $this->getJson('/api/vendedores/'. $seller->id);
+        $response = $this->getJson('/vendedores/'. $seller->id);
 
         $response->assertStatus(200)
             ->assertJsonFragment([
@@ -52,7 +52,7 @@ class SellerTest extends TestCase
     {
         $seller = Seller::factory()->create();
  
-        $response = $this->deleteJson('/api/vendedores/'. $seller->id);
+        $response = $this->deleteJson('/vendedores/'. $seller->id);
 
         $response->assertStatus(200)
             ->assertJsonFragment([

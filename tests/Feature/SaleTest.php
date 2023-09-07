@@ -18,7 +18,7 @@ class SaleTest extends TestCase
         $amount = 1000;
         $comission = $amount * 0.085;
 
-        $response = $this->postJson('/api/venda/', [
+        $response = $this->postJson('/venda/', [
                 "seller_id" => $seller->id,
                 "amount" => $amount
             ]);
@@ -38,12 +38,12 @@ class SaleTest extends TestCase
         $seller = Seller::factory()->create();
         $amount = 1000;
 
-        $response = $this->postJson('/api/venda/', [
+        $response = $this->postJson('/venda/', [
                 "seller_id" => $seller->id,
                 "amount" => $amount
             ]);
         
-        $response = $this->getJson('/api/venda/'. $seller->id);
+        $response = $this->getJson('/venda/'. $seller->id);
 
         $response->assertStatus(200);
     }
