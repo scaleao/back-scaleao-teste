@@ -12,8 +12,22 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
      */
     public function index()
     {
-        $sellers = Seller::all();
-        return $sellers->count() ? $sellers : null;
+        try{
+            $sellers = Seller::all();
+            if($sellers->count() == 0){
+                return response()->json(['message' => 'Vendedores não encontrados'], 404);
+            }
+
+            return response()->json([
+                'message' => 'Vendedores encontrados',
+                'data' => $sellers,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(
+                ['erro' => 'Ocorreu um erro interno consultar todos os vendedores']
+                , 500
+            );
+        }
     }
 
     /**
@@ -21,39 +35,67 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
      */
     public function store(SellerStoreOurUpdateResquest $request)
     {
-        $vendedor = Seller::create($request->validated());
-        return $vendedor ? $vendedor : false;
+        try{
+            $seller = Seller::create($request->validated());
+            if($seller){
+                return response()->json([
+                    'message' => 'Vendedor cadastrado com sucesso',
+                    'data' => $seller,
+                ], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['erro' => 'Ocorreu um erro interno ao cadastrar vendedor'], 500);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(int $id)
     {
         $seller = Seller::findOrFail($id);
 
-        return $seller;
+        return response()->json([
+            'message' => 'Vendedor consultado',
+            'data' => $seller,
+        ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(SellerStoreOurUpdateResquest $request, $id)
+    public function update(SellerStoreOurUpdateResquest $request, int $id)
     {
-        $seller = Seller::findOrFail($id);
-        $seller->update($request->validated());
-
-        return $seller;
+        try{
+            $seller = Seller::findOrFail($id);
+            $seller->update($request->validated());
+            if($seller){
+                return response()->json([
+                    'message' => 'Vendedor atualizado com sucesso',
+                    'data' => $seller,
+                ], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['erro' => 'Ocorreu um erro interno ao atualizar vendedor'], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $seller = Seller::findOrFail($id);
-        $seller->delete($id);
+        try{
+            $seller = Seller::findOrFail($id);
+            $seller->delete($id);
 
-        return $seller ? true : false;
+            if($seller){
+                return response()->json([
+                    'message' => 'Vendedor deletado com sucesso',
+                ], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['erro' => 'Ocorreu um erro interno ao deletar vendedor'], 500);
+        }
     }
 }
