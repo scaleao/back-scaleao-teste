@@ -5,12 +5,6 @@
 <li>WSL 2 (Windows) </li>
 </ul>
 <h3>COMANDOS:</h3>
-<p>O comando a seguir subira os containers pelo sail 8.2(lastest): Laravel 10.x, MySQL e Redis</p>
-
-```
-./vendor/bin/sail up -d
-```
-
 <p>Configure seu arquivo <code>.env</code> conforme o arquivo <code>.env.example</code> e <code>docker-compose.yml</code></p>
 
 ```
@@ -32,6 +26,12 @@ DB_PASSWORD=password
 QUEUE_CONNECTION=database
 
 ...
+```
+
+<p>O comando a seguir subira os containers pelo sail 8.2(lastest): Laravel 10.x, MySQL, Mailpit e Redis</p>
+
+```
+./vendor/bin/sail up -d
 ```
 
 <p>Crie uma coneexão no seu SGDB favorito, e suba as <code>migrations</code></p>
