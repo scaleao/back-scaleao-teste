@@ -18,10 +18,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
                 return response()->json(['message' => 'Vendedores não encontrados'], 404);
             }
 
-            return response()->json([
-                'message' => 'Vendedores encontrados',
-                'data' => $sellers,
-            ], 200);
+            return response()->json($sellers, 200);
         } catch (\Exception $e) {
             return response()->json(
                 ['erro' => 'Ocorreu um erro interno consultar todos os vendedores']
@@ -38,10 +35,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
         try{
             $seller = Seller::create($request->validated());
             if($seller){
-                return response()->json([
-                    'message' => 'Vendedor cadastrado com sucesso',
-                    'data' => $seller,
-                ], 200);
+                return response()->json($seller, 200);
             }
         } catch (\Exception $e) {
             return response()->json(['erro' => 'Ocorreu um erro interno ao cadastrar vendedor'], 500);
@@ -55,10 +49,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
     {
         $seller = Seller::findOrFail($id);
 
-        return response()->json([
-            'message' => 'Vendedor consultado',
-            'data' => $seller,
-        ], 200);
+        return response()->json($seller, 200);
     }
 
     /**
@@ -70,10 +61,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
             $seller = Seller::findOrFail($id);
             $seller->update($request->validated());
             if($seller){
-                return response()->json([
-                    'message' => 'Vendedor atualizado com sucesso',
-                    'data' => $seller,
-                ], 200);
+                return response()->json($seller, 200);
             }
         } catch (\Exception $e) {
             return response()->json(['erro' => 'Ocorreu um erro interno ao atualizar vendedor'], 500);
@@ -90,9 +78,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
             $seller->delete($id);
 
             if($seller){
-                return response()->json([
-                    'message' => 'Vendedor deletado com sucesso',
-                ], 200);
+                return response()->json('Vendedor deletado com sucesso', 200);
             }
         } catch (\Exception $e) {
             return response()->json(['erro' => 'Ocorreu um erro interno ao deletar vendedor'], 500);

@@ -53,3 +53,21 @@ QUEUE_CONNECTION=database
 ```
 ./vendor/bin/sail artisan queue:work
 ```
+
+<p>Rodar os <code>TEST</code> (testes)</p>
+<p><code>OBSERVAÇÕES:</code> configurar o arquivo <code>phpunit.xml</code> correspondente ao <code>.env<code>. Dentro do arquivo <code>phpunit.xml</code> tem essa sessão para configuração, preencha com os dados do arquivo <code>.env</code>:<p>
+
+```
+<!-- DEFINA OS VALORES DAS VARIAVEIS DE .ENV -->
+<env name="DB_CONNECTION" value="mysql"/> 
+<env name="DB_HOST" value="mysql"/> 
+<env name="DB_PORT" value="3306"/> 
+<env name="DB_DATABASE" value=""/>
+<env name="DB_USERNAME" value=""/>
+<env name="DB_PASSWORD" value=""/> 
+<!--  -->
+```
+
+```
+./vendor/bin/sail artisan test
+```

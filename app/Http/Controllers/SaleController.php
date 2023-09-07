@@ -12,10 +12,7 @@ class SaleController extends Controller
         try{
             $sale = Sale::create($request->all());
             if($sale){
-                return response()->json([
-                    'message' => 'Venda cadastrada com sucesso',
-                    'data' => $sale,
-                ], 200);
+                return response()->json($sale, 200);
             }
         } catch (\Exception $e) {
             return response()->json(['erro' => 'Ocorreu um erro interno ao cadastrar venda'], 500);
@@ -25,10 +22,7 @@ class SaleController extends Controller
     public function show(int $id){
         $seller = Seller::findOrFail($id);
         $sales = $seller->sale;
-        
-        return response()->json([
-            'message' => 'Vendas consultado',
-            'data' => $sales,
-        ], 200);
+
+        return response()->json($sales, 200);
     }
 }
