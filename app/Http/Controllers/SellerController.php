@@ -13,7 +13,8 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
     public function index()
     {
         try{
-            $sellers = Seller::all();
+            $sellers = Seller::getSellersWithTotalComissions();
+
             if($sellers->count() == 0){
                 return response()->json(['message' => 'Vendedores não encontrados'], 404);
             }
