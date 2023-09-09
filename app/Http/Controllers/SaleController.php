@@ -21,7 +21,7 @@ class SaleController extends Controller
 
     public function show(int $id){
         $seller = Seller::findOrFail($id);
-        $sales = $seller->sale;
+        $sales = $seller->sales;
 
         return response()->json($sales, 200);
     }
