@@ -73,6 +73,20 @@ QUEUE_CONNECTION=database
 ```
 
 <h3>API DOCUMENTAÇÃO</h3>
+<p>full url: <code>URL BASE</code> + <code>ENDPOINT</code></p>
+<p>URL BASE:</p>
+<ul>
+<li><code>PRODUCTION:</code> http://15.229.23.85</li>
+<li><code>DEVELOPMENT:</code> http://localhost:80</li>
+<li></li>
+</ul>
+<p>STATUS CODE:</p>
+<ul>
+<li><code>200 :</code> sucesso</li>
+<li><code>404 :</code> não encontrado</li>
+<li><code>422 :</code> algum parametro invalido</li>
+<li><code>500 :</code> erro internado | falha com banco</li>
+</ul>
 <h4>ENDPOINTS:</h4>
 <p>Vendedores</p>
 <ul>
