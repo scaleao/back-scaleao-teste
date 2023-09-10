@@ -78,7 +78,6 @@ QUEUE_CONNECTION=database
 <ul>
 <li><code>PRODUCTION:</code> http://15.229.23.85</li>
 <li><code>DEVELOPMENT:</code> http://localhost:80</li>
-<li></li>
 </ul>
 <p>STATUS CODE:</p>
 <ul>
