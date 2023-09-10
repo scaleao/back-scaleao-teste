@@ -71,3 +71,175 @@ QUEUE_CONNECTION=database
 ```
 ./vendor/bin/sail artisan test
 ```
+
+<h3>API DOCUMENTAÇÃO</h3>
+<h4>ENDPOINTS:</h4>
+<p>Vendedores</p>
+<ul>
+<li><code>GET</code> <code>/vendedores</code> listar todos os vendedores</li>
+<ul>
+<li>
+RESPONSE:
+
+```
+[
+    {
+		"id": number,
+		"name": string,
+		"email": string,
+		"created_at": string = date,
+		"updated_at": string = date,
+		"total_commission": double,
+		"sales": []
+    },
+]
+```
+
+</li>
+</ul>
+<li><code>POST</code> <code>/vendedores</code> criar um novo vendedor</li>
+<ul>
+<li>
+BODY REQUEST ESPERADA:
+
+```
+{
+    "name": string, // EXEMPLO: Joao
+    "email": string // EXEMPLO: joaoscaleao@hotmail.com
+}
+```
+
+</li>
+<li>
+RESPONSE:
+
+```
+{
+    "id": number,
+    "name": string,
+    "email": string,
+    "updated_at": string = date,
+    "created_at": string = date
+}
+```
+
+</li>
+</ul>
+<li><code>PUT / PATCH</code> <code>/vendedores/{id}</code> atualizar um vendedor, espera um id do tipo number valido</li>
+<ul>
+<li>
+BODY REQUEST ESPERADA:
+
+```
+{
+    "name": string, // EXEMPLO: Joao1 | nome a ser editado
+    "email": string // EXEMPLO: joaoscaleao1@hotmail.com | email a ser editado
+}
+```
+
+</li>
+<li>
+RESPONSE:
+
+```
+{
+    "id": number,
+    "name": string,
+    "email": string,
+    "updated_at": string = date,
+    "created_at": string = date
+}
+```
+
+</li>
+</ul>
+<li><code>GET</code> <code>/vendedores/{id}</code> consultar um vendedor, espera um id do tipo number valido</li>
+<ul>
+<li>
+RESPONSE:
+
+```
+{
+    "id": number,
+    "name": string,
+    "email": string,
+    "updated_at": string = date,
+    "created_at": string = date
+}
+```
+
+</li>
+</ul>
+<li><code>DELETE</code> <code>/vendedores/{id}</code> deletar um vendedor, espera um id do tipo number valido</li>
+<ul>
+<li>
+RESPONSE:
+
+```
+{
+    "message": "Vendedor deletado com sucesso",
+    "data": "true"
+}
+```
+
+</li>
+</ul>
+</ul>
+<hr>
+<p>Venda</p>
+<ul>
+<li><code>GET</code> <code>/venda/{id}</code> listar todos os venda por vendedor, espera um id do tipo number valido</li>
+<ul>
+<li>
+RESPONSE:
+
+```
+[
+    {
+        "id": number,
+        "seller_id": number,
+        "name": string,
+        "email": string,
+        "amount": double,
+        "comission": double,
+        "created_at": string = date,
+        "updated_at": string = date,
+    }
+]
+```
+
+</li>
+</ul>
+</ul>
+<li><code>POST</code> <code>/venda</code> criar um novo vendedor</li>
+<ul>
+<li>
+BODY REQUEST ESPERADA:
+
+```
+{
+    "seller_id": number,
+    "amount": double
+}
+```
+
+</li>
+<li>
+RESPONSE:
+
+```
+{
+    "id": number,
+    "seller_id": number,
+    "amount": double,
+    "name": string,
+    "email": string,
+    "comission": double,
+    "updated_at": string = date,
+    "created_at": string = date
+}
+```
+
+</li>
+</ul>
+</ul>
