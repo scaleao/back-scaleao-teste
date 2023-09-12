@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sale;
 use App\Services\SaleService;
-use App\Models\Seller;
 use App\Http\Requests\SaleStoreRequest;
 
 class SaleController extends Controller
