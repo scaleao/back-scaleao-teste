@@ -10,8 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReportMail;
-use Illuminate\Support\Facades\DB;
-use App\Models\Seller;
+use App\Services\SellerService;
 
 class ReportMailJob implements ShouldQueue
 {
@@ -23,7 +22,7 @@ class ReportMailJob implements ShouldQueue
      */
     public function __construct()
     {
-        $this->sellers = Seller::getSellersWithSalesToday();
+        $this->sellers = SellerService::getSellersWithSalesToday();
     }
 
     /**

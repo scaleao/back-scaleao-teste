@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Seller;
 use App\Http\Requests\SellerStoreOurUpdateResquest;
+use App\Services\SellerService;
 
  class SellerController extends Controller
 {
@@ -12,20 +12,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
      */
     public function index()
     {
-        try{
-            $sellers = Seller::getSellersWithTotalComissions();
-
-            if($sellers->count() == 0){
-                return response()->json(['message' => 'Vendedores não encontrados'], 404);
-            }
-
-            return response()->json($sellers, 200);
-        } catch (\Exception $e) {
-            return response()->json(
-                ['erro' => 'Ocorreu um erro interno consultar todos os vendedores']
-                , 500
-            );
-        }
+        return SellerService::getSellersWithTotalComissions();
     }
 
     /**
@@ -33,14 +20,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
      */
     public function store(SellerStoreOurUpdateResquest $request)
     {
-        try{
-            $seller = Seller::create($request->validated());
-            if($seller){
-                return response()->json($seller, 200);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['erro' => 'Ocorreu um erro interno ao cadastrar vendedor'], 500);
-        }
+        return SellerService::create($request->validated());
     }
 
     /**
@@ -48,9 +28,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
      */
     public function show(int $id)
     {
-        $seller = Seller::findOrFail($id);
-
-        return response()->json($seller, 200);
+        return SellerService::show($id);
     }
 
     /**
@@ -58,15 +36,7 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
      */
     public function update(SellerStoreOurUpdateResquest $request, int $id)
     {
-        try{
-            $seller = Seller::findOrFail($id);
-            $seller->update($request->validated());
-            if($seller){
-                return response()->json($seller, 200);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['erro' => 'Ocorreu um erro interno ao atualizar vendedor'], 500);
-        }
+        return SellerService::update($request->validated(), $id);
     }
 
     /**
@@ -74,15 +44,6 @@ use App\Http\Requests\SellerStoreOurUpdateResquest;
      */
     public function destroy(int $id)
     {
-        try{
-            $seller = Seller::findOrFail($id);
-            $seller->delete($id);
-
-            if($seller){
-                return response()->json('Vendedor deletado com sucesso', 200);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['erro' => 'Ocorreu um erro interno ao deletar vendedor'], 500);
-        }
+        return SellerService::destroy($id);
     }
 }
