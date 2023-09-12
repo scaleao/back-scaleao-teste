@@ -13,6 +13,8 @@ class Sale extends Model
     protected $fillable = [
         'seller_id',
         'amount',
+        'name',
+        'email',
     ];
 
     public function seller()
