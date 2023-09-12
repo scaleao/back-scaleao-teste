@@ -15,24 +15,6 @@ class Sale extends Model
         'amount',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($sale) {
-            $seller = Seller::find($sale->seller_id);
-
-            if ($seller) {
-                $sale->name = $seller->name;
-                $sale->email = $seller->email;
-
-                // Calcular a comissão (8.5% de amount)
-                $comission = $sale->amount * 0.085;
-                $sale->comission = $comission;
-            }
-        });
-    }
-
     public function seller()
     {
         return $this->belongsTo(Seller::class);
